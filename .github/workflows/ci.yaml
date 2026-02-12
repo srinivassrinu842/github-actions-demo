@@ -45,7 +45,7 @@ jobs:
         run: |
           # Use yq to update the image tag in your values.yaml
           # Replace './charts/my-app/values.yaml' with your actual path
-          yq -i ".image.tag = \"${{ needs.build.outputs.image_tag }}\"" ./nginx/values.yaml
+          yq -i ".image.tag = \"${{ github.sha }}\"" ./nginx/values.yaml
 
       - name: Commit and push changes
         run: |
@@ -57,6 +57,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: update image tag to ${{ needs.build.outputs.image_tag }} [skip ci]"
+            git commit -m "chore: update image tag to ${{ github.sha }} [skip ci]"
             git push
           fi
