@@ -50,6 +50,7 @@ jobs:
         run: |
           # Modifies the values.yaml file using yq
           # Adjust the path below to your actual values.yaml file
+          yq -i ".image.repository = docker.io/nginx-app" ./nginx/values.yaml
           yq -i ".image.tag = \"${{ needs.build.outputs.image_tag }}\"" ./nginx/values.yaml
 
       - name: Commit and Push Changes
