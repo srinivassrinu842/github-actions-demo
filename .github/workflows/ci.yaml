@@ -51,7 +51,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add ./charts/my-app/values.yaml
+          git add ./nginx/values.yaml
           
           # Check if there are changes before committing to prevent errors
           if git diff --staged --quiet; then
